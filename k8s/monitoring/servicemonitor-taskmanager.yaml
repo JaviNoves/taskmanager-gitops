@@ -1,3 +1,5 @@
+# Le dice a Prometheus que debe monitorear los servicios en los namespaces taskmanager-dev y
+# taskmanager-prod que tengan la etiqueta monitoring: enabled, y que scrapee el endpoint /actuator/prometheus cada 15 segundos con un timeout de 10 segundos.
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
