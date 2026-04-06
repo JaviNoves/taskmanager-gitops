@@ -9,18 +9,18 @@ patches:
 - path: replicas-patch.yaml
 images:
 - name: ghcr.io/javinoves/discovery-server
-  newTag: 58f34d7e454353f201d399493d40e839649cc52a
+  newTag: 0d1e9454b7bc50c0aea95f3455d3a750d77060a0
 - name: ghcr.io/javinoves/auth-user-service
-  newTag: 58f34d7e454353f201d399493d40e839649cc52a
+  newTag: 0d1e9454b7bc50c0aea95f3455d3a750d77060a0
 - name: ghcr.io/javinoves/notification-service
-  newTag: 58f34d7e454353f201d399493d40e839649cc52a
+  newTag: 0d1e9454b7bc50c0aea95f3455d3a750d77060a0
 - name: ghcr.io/javinoves/project-service
-  newTag: 58f34d7e454353f201d399493d40e839649cc52a
+  newTag: 0d1e9454b7bc50c0aea95f3455d3a750d77060a0
 - name: ghcr.io/javinoves/task-service
-  newTag: 58f34d7e454353f201d399493d40e839649cc52a
+  newTag: 0d1e9454b7bc50c0aea95f3455d3a750d77060a0
 - name: ghcr.io/javinoves/payments-service
-  newTag: 58f34d7e454353f201d399493d40e839649cc52a
+  newTag: 0d1e9454b7bc50c0aea95f3455d3a750d77060a0
 - name: ghcr.io/javinoves/api-gateway
-  newTag: 58f34d7e454353f201d399493d40e839649cc52a
+  newTag: 0d1e9454b7bc50c0aea95f3455d3a750d77060a0
 - name: ghcr.io/javinoves/frontend
-  newTag: 58f34d7e454353f201d399493d40e839649cc52a
+  newTag: 0d1e9454b7bc50c0aea95f3455d3a750d77060a0
