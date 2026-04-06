@@ -1,28 +1,24 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-
 namespace: taskmanager-dev
-
 resources:
-  - ../../base
-  - namespace.yaml
-  - ingress.yaml
-
+- ../../base
+- namespace.yaml
+- ingress.yaml
 patches:
-  - path: replicas-patch.yaml
-
+- path: replicas-patch.yaml
 images:
-  - name: ghcr.io/javinoves/discovery-server
-    newTag: dev
-  - name: ghcr.io/javinoves/auth-user-service
-    newTag: dev
-  - name: ghcr.io/javinoves/notification-service
-    newTag: dev
-  - name: ghcr.io/javinoves/project-service
-    newTag: dev
-  - name: ghcr.io/javinoves/task-service
-    newTag: dev
-  - name: ghcr.io/javinoves/payments-service
-    newTag: dev
-  - name: ghcr.io/javinoves/api-gateway
-    newTag: dev
+- name: ghcr.io/javinoves/discovery-server
+  newTag: 119fd6f7417ba8d2890994d533f8cad96e4f1511
+- name: ghcr.io/javinoves/auth-user-service
+  newTag: 119fd6f7417ba8d2890994d533f8cad96e4f1511
+- name: ghcr.io/javinoves/notification-service
+  newTag: 119fd6f7417ba8d2890994d533f8cad96e4f1511
+- name: ghcr.io/javinoves/project-service
+  newTag: 119fd6f7417ba8d2890994d533f8cad96e4f1511
+- name: ghcr.io/javinoves/task-service
+  newTag: 119fd6f7417ba8d2890994d533f8cad96e4f1511
+- name: ghcr.io/javinoves/payments-service
+  newTag: 119fd6f7417ba8d2890994d533f8cad96e4f1511
+- name: ghcr.io/javinoves/api-gateway
+  newTag: 119fd6f7417ba8d2890994d533f8cad96e4f1511
