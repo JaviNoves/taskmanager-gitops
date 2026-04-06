@@ -26,3 +26,5 @@ images:
     newTag: prod
   - name: ghcr.io/javinoves/api-gateway
     newTag: prod
+  - name: ghcr.io/javinoves/frontend
+    newTag: prod

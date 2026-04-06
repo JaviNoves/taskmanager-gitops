@@ -14,3 +14,4 @@ resources:
   - mysql-task
   - mysql-payments
   - rabbitmq
+  - frontend

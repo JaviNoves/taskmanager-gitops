@@ -26,3 +26,5 @@ images:
     newTag: dev
   - name: ghcr.io/javinoves/api-gateway
     newTag: dev
+  - name: ghcr.io/javinoves/frontend
+    newTag: dev
