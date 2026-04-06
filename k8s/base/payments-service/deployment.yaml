@@ -1,0 +1,53 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments-service
+  template:
+    metadata:
+      labels:
+        app: payments-service
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: payments-service
+          image: ghcr.io/javinoves/payments-service:dev
+          ports:
+            - containerPort: 8084
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:mysql://mysql-payments:3306/paymentsdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: payments-service-secret
+                  key: MYSQL_ROOT_USERNAME
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: payments-service-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: STRIPE_SECRETKEY
+              valueFrom:
+                secretKeyRef:
+                  name: payments-service-secret
+                  key: STRIPE_SECRETKEY
+            - name: STRIPE_WEBHOOKSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: payments-service-secret
+                  key: STRIPE_WEBHOOKSECRET
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://discovery-server:8761/eureka
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
