@@ -34,6 +34,19 @@ spec:
                   key: MYSQL_ROOT_PASSWORD
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:8761/eureka
+            - name: INTERNAL_REMINDERS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: task-service-secret
+                  key: INTERNAL_REMINDERS_TOKEN
+            - name: SPRING_RABBITMQ_HOST
+              value: rabbitmq
+            - name: SPRING_RABBITMQ_PORT
+              value: "5672"
+            - name: SPRING_RABBITMQ_USERNAME
+              value: guest
+            - name: SPRING_RABBITMQ_PASSWORD
+              value: guest
           readinessProbe:
             httpGet:
               path: /readyz

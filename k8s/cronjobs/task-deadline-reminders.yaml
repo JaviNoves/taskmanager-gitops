@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: task-deadline-reminders
+spec:
+  schedule: "*/15 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: curl
+              image: curlimages/curl:8.7.1
+              command: ["/bin/sh", "-c"]
+              args:
+                - >
+                  curl -X POST http://task-service:8083/internal/reminders/deadlines
+                  -H "X-Internal-Token: ${INTERNAL_REMINDERS_TOKEN}"
+              env:
+                - name: INTERNAL_REMINDERS_TOKEN
+                  valueFrom:
+                    secretKeyRef:
+                      name: task-service-secret
+                      key: INTERNAL_REMINDERS_TOKEN
+          restartPolicy: OnFailure
