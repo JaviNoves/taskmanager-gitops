@@ -15,3 +15,4 @@ resources:
   - mysql-payments
   - rabbitmq
   - frontend
+  - cronjob-task-reminders

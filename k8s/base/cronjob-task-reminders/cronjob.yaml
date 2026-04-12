@@ -3,7 +3,7 @@ kind: CronJob
 metadata:
   name: task-deadline-reminders
 spec:
-  schedule: "*/15 * * * *"
+  schedule: "*/15 * * * *"   # cada 15 minutos
   jobTemplate:
     spec:
       template:
@@ -16,10 +16,10 @@ spec:
                 - >
                   curl -X POST http://task-service:8083/internal/reminders/deadlines
                   -H "X-Internal-Token: ${INTERNAL_REMINDERS_TOKEN}"
-              env:
-                - name: INTERNAL_REMINDERS_TOKEN
-                  valueFrom:
-                    secretKeyRef:
-                      name: task-service-secret
-                      key: INTERNAL_REMINDERS_TOKEN
+          env:
+            - name: INTERNAL_REMINDERS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: task-service-secret
+                  key: INTERNAL_REMINDERS_TOKEN
           restartPolicy: OnFailure
