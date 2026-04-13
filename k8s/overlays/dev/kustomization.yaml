@@ -24,3 +24,5 @@ images:
   newTag: 4dc500393366aa4b6ef015b9b578c3dc7225b778
 - name: ghcr.io/javinoves/frontend
   newTag: 4dc500393366aa4b6ef015b9b578c3dc7225b778
+- name: ghcr.io/javinoves/ai-service
+  newTag: dev

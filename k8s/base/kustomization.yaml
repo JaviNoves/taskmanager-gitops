@@ -16,3 +16,5 @@ resources:
   - rabbitmq
   - frontend
   - cronjob-task-reminders
+  - postgres-ai
+  - ai-service

@@ -46,3 +46,10 @@ metadata:
   name: discovery-server
 spec:
   replicas: 1
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-service
+spec:
+  replicas: 2

@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres-ai
+  template:
+    metadata:
+      labels:
+        app: postgres-ai
+    spec:
+      containers:
+        - name: postgres-ai
+          image: pgvector/pgvector:pg16
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_DB
+              value: aidb
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secret
+                  key: POSTGRES_USERNAME
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ai-service-secret
+                  key: POSTGRES_PASSWORD
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-ai-storage
+      volumes:
+        - name: postgres-ai-storage
+          persistentVolumeClaim:
+            claimName: postgres-ai-pvc
