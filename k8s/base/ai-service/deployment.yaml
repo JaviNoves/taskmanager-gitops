@@ -20,14 +20,14 @@ spec:
           ports:
             - containerPort: 8086
           env:
-            - name: SPRING_DATASOURCE_URL
+            - name: POSTGRESQL_URL
               value: jdbc:postgresql://postgres-ai:5432/aidb
-            - name: SPRING_DATASOURCE_USERNAME
+            - name: POSTGRESQL_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: ai-service-secret
                   key: POSTGRES_USERNAME
-            - name: SPRING_DATASOURCE_PASSWORD
+            - name: POSTGRESQL_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: ai-service-secret

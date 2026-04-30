@@ -20,14 +20,14 @@ spec:
           ports:
             - containerPort: 8083
           env:
-            - name: SPRING_DATASOURCE_URL
+            - name: MYSQL_URL
               value: jdbc:mysql://mysql-task:3306/taskdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-            - name: SPRING_DATASOURCE_USERNAME
+            - name: MYSQL_ROOT_USERNAME
               valueFrom:
                 secretKeyRef:
                   name: task-service-secret
                   key: MYSQL_ROOT_USERNAME
-            - name: SPRING_DATASOURCE_PASSWORD
+            - name: MYSQL_ROOT_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: task-service-secret
