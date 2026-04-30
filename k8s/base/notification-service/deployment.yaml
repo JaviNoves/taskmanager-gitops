@@ -20,26 +20,8 @@ spec:
           ports:
             - containerPort: 8085
           env:
-            - name: SPRING_MAIL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: notification-service-secret
-                  key: SPRING_MAIL_USERNAME
-            - name: SPRING_MAIL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: notification-service-secret
-                  key: SPRING_MAIL_PASSWORD
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-server:8761/eureka
-            - name: SPRING_RABBITMQ_HOST
-              value: rabbitmq
-            - name: SPRING_RABBITMQ_PORT
-              value: "5672"
-            - name: SPRING_RABBITMQ_USERNAME
-              value: guest
-            - name: SPRING_RABBITMQ_PASSWORD
-              value: guest
+            - name: CONFIG_SERVER_URI
+              value: http://config-server:8888
           readinessProbe:
             httpGet:
               path: /readyz

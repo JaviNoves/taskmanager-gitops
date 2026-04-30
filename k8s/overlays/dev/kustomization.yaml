@@ -26,3 +26,5 @@ images:
   newTag: 498b8c99f0be91677370db3a587bb4ab5497e572
 - name: ghcr.io/javinoves/ai-service
   newTag: 498b8c99f0be91677370db3a587bb4ab5497e572
+- name: ghcr.io/javinoves/config-server
+  newTag: 498b8c99f0be91677370db3a587bb4ab5497e572

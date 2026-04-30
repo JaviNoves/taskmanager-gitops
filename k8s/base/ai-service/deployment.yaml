@@ -20,35 +20,8 @@ spec:
           ports:
             - containerPort: 8086
           env:
-            - name: POSTGRESQL_URL
-              value: jdbc:postgresql://postgres-ai:5432/aidb
-            - name: POSTGRESQL_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: ai-service-secret
-                  key: POSTGRES_USERNAME
-            - name: POSTGRESQL_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: ai-service-secret
-                  key: POSTGRES_PASSWORD
-            - name: GEMINI_API_KEY
-              valueFrom:
-                secretKeyRef:
-                  name: ai-service-secret
-                  key: GEMINI_API_KEY
-            - name: GEMINI_CHAT_MODEL
-              valueFrom:
-                secretKeyRef:
-                  name: ai-service-secret
-                  key: GEMINI_CHAT_MODEL
-            - name: GEMINI_EMBEDDING_MODEL
-              valueFrom:
-                secretKeyRef:
-                  name: ai-service-secret
-                  key: GEMINI_EMBEDDING_MODEL
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-server:8761/eureka
+            - name: CONFIG_SERVER_URI
+              value: http://config-server:8888
           readinessProbe:
             httpGet:
               path: /readyz

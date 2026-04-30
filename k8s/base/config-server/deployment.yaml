@@ -1,0 +1,127 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-server
+  template:
+    metadata:
+      labels:
+        app: config-server
+    spec:
+      imagePullSecrets:
+        - name: ghcr-secret
+      containers:
+        - name: config-server
+          image: ghcr.io/javinoves/config-server:dev
+          ports:
+            - containerPort: 8888
+          env:
+            # Secrets — consolidated in a single Secret for the config server
+            - name: MYSQL_ROOT_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: MYSQL_ROOT_USERNAME
+            - name: MYSQL_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: MYSQL_ROOT_PASSWORD
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: JWT_SECRET
+            - name: SECURITY_JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: SECURITY_JWT_SECRET
+            - name: STRIPE_SECRETKEY
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: STRIPE_SECRETKEY
+            - name: STRIPE_WEBHOOKSECRET
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: STRIPE_WEBHOOKSECRET
+            - name: SPRING_MAIL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: SPRING_MAIL_USERNAME
+            - name: SPRING_MAIL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: SPRING_MAIL_PASSWORD
+            - name: INTERNAL_REMINDERS_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: INTERNAL_REMINDERS_TOKEN
+            - name: POSTGRESQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: POSTGRESQL_USERNAME
+            - name: POSTGRESQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: POSTGRESQL_PASSWORD
+            - name: GEMINI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: GEMINI_API_KEY
+            - name: GEMINI_CHAT_MODEL
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: GEMINI_CHAT_MODEL
+            - name: GEMINI_EMBEDDING_MODEL
+              valueFrom:
+                secretKeyRef:
+                  name: config-server-secret
+                  key: GEMINI_EMBEDDING_MODEL
+            # Non-sensitive infrastructure coordinates (K8s DNS defaults)
+            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
+              value: http://discovery-server:8761/eureka
+            - name: SPRING_RABBITMQ_HOST
+              value: rabbitmq
+            - name: SPRING_RABBITMQ_PORT
+              value: "5672"
+            - name: SPRING_RABBITMQ_USERNAME
+              value: guest
+            - name: SPRING_RABBITMQ_PASSWORD
+              value: guest
+          readinessProbe:
+            httpGet:
+              path: /readyz
+              port: 8888
+            initialDelaySeconds: 15
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /livez
+              port: 8888
+            initialDelaySeconds: 30
+            periodSeconds: 15
+            timeoutSeconds: 3
+            failureThreshold: 3
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "300m"
+              memory: "384Mi"

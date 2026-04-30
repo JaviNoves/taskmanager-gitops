@@ -20,33 +20,8 @@ spec:
           ports:
             - containerPort: 8081
           env:
-            - name: MYSQL_URL
-              value: jdbc:mysql://mysql-auth:3306/authdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-            - name: MYSQL_ROOT_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: auth-user-service-secret
-                  key: MYSQL_ROOT_USERNAME
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: auth-user-service-secret
-                  key: MYSQL_ROOT_PASSWORD
-            - name: JWT_SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: auth-user-service-secret
-                  key: JWT_SECRET
-            - name: SPRING_RABBITMQ_HOST
-              value: rabbitmq
-            - name: SPRING_RABBITMQ_PORT
-              value: "5672"
-            - name: SPRING_RABBITMQ_USERNAME
-              value: guest
-            - name: SPRING_RABBITMQ_PASSWORD
-              value: guest
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-server:8761/eureka
+            - name: CONFIG_SERVER_URI
+              value: http://config-server:8888
           readinessProbe:
             httpGet:
               path: /readyz

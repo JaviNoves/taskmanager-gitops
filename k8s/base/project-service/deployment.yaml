@@ -20,20 +20,8 @@ spec:
           ports:
             - containerPort: 8082
           env:
-            - name: MYSQL_URL
-              value: jdbc:mysql://mysql-project:3306/projectdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
-            - name: MYSQL_ROOT_USERNAME
-              valueFrom:
-                secretKeyRef:
-                  name: project-service-secret
-                  key: MYSQL_ROOT_USERNAME
-            - name: MYSQL_ROOT_PASSWORD
-              valueFrom:
-                secretKeyRef:
-                  name: project-service-secret
-                  key: MYSQL_ROOT_PASSWORD
-            - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
-              value: http://discovery-server:8761/eureka
+            - name: CONFIG_SERVER_URI
+              value: http://config-server:8888
           readinessProbe:
             httpGet:
               path: /readyz
