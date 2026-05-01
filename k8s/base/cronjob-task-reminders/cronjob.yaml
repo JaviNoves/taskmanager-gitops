@@ -4,6 +4,9 @@ metadata:
   name: task-deadline-reminders
 spec:
   schedule: "*/15 * * * *"
+  concurrencyPolicy: Forbid
+  successfulJobsHistoryLimit: 1
+  failedJobsHistoryLimit: 1
   jobTemplate:
     spec:
       template:
