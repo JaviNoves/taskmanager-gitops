@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config-server-urls
+data:
+  MYSQL_AUTH_URL: jdbc:mysql://mysql-auth:3306/authdb
+  MYSQL_TASK_URL: jdbc:mysql://mysql-task:3306/taskdb
+  MYSQL_PROJECT_URL: jdbc:mysql://mysql-project:3306/projectdb
+  MYSQL_PAYMENTS_URL: jdbc:mysql://mysql-payments:3306/paymentsdb
+  POSTGRESQL_URL: jdbc:postgresql://postgres-ai:5432/aidb

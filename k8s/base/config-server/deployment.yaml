@@ -91,6 +91,32 @@ spec:
                 secretKeyRef:
                   name: config-server-secret
                   key: GEMINI_EMBEDDING_MODEL
+            # Database URLs from ConfigMap
+            - name: MYSQL_AUTH_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-server-urls
+                  key: MYSQL_AUTH_URL
+            - name: MYSQL_TASK_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-server-urls
+                  key: MYSQL_TASK_URL
+            - name: MYSQL_PROJECT_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-server-urls
+                  key: MYSQL_PROJECT_URL
+            - name: MYSQL_PAYMENTS_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-server-urls
+                  key: MYSQL_PAYMENTS_URL
+            - name: POSTGRESQL_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-server-urls
+                  key: POSTGRESQL_URL
             # Non-sensitive infrastructure coordinates (K8s DNS defaults)
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:8761/eureka
