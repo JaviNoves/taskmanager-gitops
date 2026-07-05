@@ -117,6 +117,16 @@ spec:
                 configMapKeyRef:
                   name: config-server-urls
                   key: POSTGRESQL_URL
+            - name: APP_FRONTEND_SUCCESS_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-server-urls
+                  key: APP_FRONTEND_SUCCESS_URL
+            - name: APP_FRONTEND_CANCEL_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: config-server-urls
+                  key: APP_FRONTEND_CANCEL_URL
             # Non-sensitive infrastructure coordinates (K8s DNS defaults)
             - name: EUREKA_CLIENT_SERVICEURL_DEFAULTZONE
               value: http://discovery-server:8761/eureka

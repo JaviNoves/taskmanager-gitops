@@ -7,6 +7,7 @@ resources:
 - ingress.yaml
 patches:
 - path: replicas-patch.yaml
+- path: configmap-patch.yaml
 images:
 - name: ghcr.io/javinoves/discovery-server
   newTag: f571fc4f5be48700a577bcf2ac2f322c6f3f645f
